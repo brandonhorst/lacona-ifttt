@@ -1,0 +1,31 @@
+{
+  "ifttt": {
+    "type": "object",
+    "title": "IFTTT",
+    "properties": {
+      "key": {
+        "type": "string",
+        "title": "Maker Channel Key",
+        "description": "This key is created for you once you activate the Maker Channel on IFTTT. Connect the channel on https://internal-api.ifttt.com/maker, then copy the key here.",
+        "separatorBelow": true
+      },
+      "triggers": {
+        "type": "array",
+        "format": "table",
+        "items": {
+          "type": "object",
+          "properties": {
+            "event": {
+              "type": "string"
+            },
+            "argument": {
+              "type": "string",
+              "enum": ["none", "string", "integer", "decimal", "url", "email", "phone", "time", "date", "datetime"],
+              "enumDisplay": ["None", "String", "Integer", "Decimal", "URL", "Email Address", "Phone Number", "Time", "Date", "Date and Time"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
