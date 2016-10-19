@@ -12,14 +12,18 @@
       "triggers": {
         "type": "array",
         "format": "table",
+        "description": "Create triggers for every IFTTT Recipe you wish to use. The Event Name should match the field in the Recipe. If an Argument Type is specified, the Argument will be passed to IFTTT Action as `Event1`.",
         "items": {
           "type": "object",
           "properties": {
             "event": {
+              "title": "Event Name",
               "type": "string"
             },
             "argument": {
               "type": "string",
+              "title": "Argument Type",
+              "default": "none",
               "enum": ["none", "string", "integer", "decimal", "url", "email", "phone", "time", "date", "datetime"],
               "enumDisplay": ["None", "String", "Integer", "Decimal", "URL", "Email Address", "Phone Number", "Time", "Date", "Date and Time"]
             }

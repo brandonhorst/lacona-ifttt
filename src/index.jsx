@@ -3,9 +3,10 @@ import _ from 'lodash'
 import { createElement } from 'elliptical'
 import { Command, String, Integer, Decimal, URL, PhoneNumber, EmailAddress, Date, Time, DateTime} from 'lacona-phrases'
 import { showNotification } from 'lacona-api'
+import { join } from 'path'
 import fetch from 'node-fetch'
 
-// 
+const IFTTT_IMG = join(__dirname, '../img/IFTTT Logo.png')
 
 const argumentTypeMap = {
   string: String,
@@ -24,10 +25,13 @@ const IFTTTCommand = {
   extends: [Command],
 
   execute (result, {config}) {
-
+    const event = encodeURIComponent(result.event)
     fetch(
-      `https://maker.ifttt.com/trigger/${result.event}/with/key/${config.ifttt.key}`,
-      {method: 'POST', body: {value1: result.argument}}
+      `https://maker.ifttt.com/trigger/${event}/with/key/${config.ifttt.key}`, {
+        method: 'POST',
+        body: JSON.stringify({value1: result.argument}),
+        headers: {'Content-Type': 'application/json'}
+      }
     ).then(res => {
       if (res.ok) {
         showNotification({title: 'IFTTT', subtitle: `${result.event} event triggered successfully`})
@@ -43,28 +47,30 @@ const IFTTTCommand = {
 
   describe ({config}) {
     if (config.ifttt.key) {
-      const triggers = _.map(config.ifttt.triggers, ({event, argument}) => {
-        let ArgumentElement = argumentTypeMap[argument]
-        let argumentAddition = ArgumentElement
-          ? [<literal text=' with ' />, (
-            <placeholder label='argument' suppressEmpty={false} id='argument'>
-              <ArgumentElement />
-            </placeholder>
-          )] : null
+      const triggers = _.chain(config.ifttt.triggers)
+        .filter('event')
+        .map(({event, argument}) => {
+          let ArgumentElement = argumentTypeMap[argument]
+          let argumentAddition = ArgumentElement
+            ? [<literal text=' with ' />, (
+              <placeholder label='argument' suppressEmpty={false} id='argument'>
+                <ArgumentElement />
+              </placeholder>
+            )] : null
 
-        return (
-          <sequence>
-            <placeholder argument='IFTTT event' id='event' suppressEmpty={false}>
-              <literal text={event} value={event} />
-            </placeholder>
-            {argumentAddition}
-          </sequence>
-        )
-      })
+          return (
+            <sequence>
+              <placeholder argument='IFTTT event' id='event' suppressEmpty={false} annotation={{type: 'image', value: IFTTT_IMG}}>
+                <literal text={event} value={event} />
+              </placeholder>
+              {argumentAddition}
+            </sequence>
+          )
+        }).value()
 
       return (
         <sequence>
-          <literal text='trigger ' />
+          <list items={['trigger ', 'do ', 'activate ']} limit={1} />
           <choice merge>{triggers}</choice>
         </sequence>
       )
