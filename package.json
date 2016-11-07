@@ -5,8 +5,13 @@
   "main": "lib/index.js",
   "lacona": {
     "title": "IFTTT",
-    "description": "Do anything on IFTTT (by using the Maker Channel)",
-    "config": "config.json"
+    "description": "Trigger anything on IFTTT (using the Maker Channel)",
+    "examples": [
+      "trigger [![](img/IFTTT Logo.png)Party Time](IFTTT event)",
+      "trigger [![](img/IFTTT Logo.png)Tweet](IFTTT event) with [](string)",
+      "trigger [![](img/IFTTT Logo.png)Call Myself](IFTTT event)",
+      "trigger [![](img/IFTTT Logo.png)Shorten URL](IFTTT event) with [](URL)"
+    ]
   },
   "scripts": {
     "build": "babel src --out-dir lib",
@@ -20,7 +25,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brandonhorst/lacona-ifttt.git"
+    "url": "git+https://github.com/brandonhorst/lacona-ifttt.git"
   },
   "dependencies": {
     "elliptical": "^2.0.0",
@@ -30,6 +35,8 @@
     "node-fetch": "^1.6.3"
   },
   "devDependencies": {
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-cli": "^6.14.0",
     "babel-preset-es2015-node": "^6.1.1",
@@ -40,7 +47,14 @@
       "es2015-node"
     ],
     "plugins": [
-      "transform-react-jsx"
+      "transform-react-jsx",
+      "transform-async-to-generator",
+      "syntax-async-functions"
     ]
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/brandonhorst/lacona-ifttt/issues"
+  },
+  "homepage": "https://github.com/brandonhorst/lacona-ifttt#readme",
+  "author": "Brandon Horst <brandonhorst@gmail.com> (http://brandonhorst.me/)"
 }
