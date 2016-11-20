@@ -33,11 +33,11 @@ function commandToElement ({command, event}) {
     if (_.startsWith(token, '{') && _.endsWith(token, '}')) {
       const type = token.slice(1, -1)
       const id = `value${eventNumber}`
-      const Type = getElement(type, id)
+      const element = getElement(type, id)
 
       eventNumber += 1
       
-      return <Type id={id} />
+      return element
 
     } else if (_.startsWith(token, '[') && _.endsWith(token, ']')) {
       const csv = token.slice(1, -1)
@@ -73,6 +73,7 @@ const IFTTTCommand = {
   execute (result, {config}) {
 
     const event = encodeURIComponent(result.event)
+    console.log(`https://maker.ifttt.com/trigger/${event}/with/key/${config.key}`)
     fetch(
       `https://maker.ifttt.com/trigger/${event}/with/key/${config.key}`, {
         method: 'POST',
