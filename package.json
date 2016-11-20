@@ -6,12 +6,27 @@
   "lacona": {
     "title": "IFTTT",
     "description": "Trigger anything on IFTTT (using the Maker Channel)",
+    "iconURL": "https://raw.githubusercontent.com/brandonhorst/lacona-ifttt/master/icon.png",
     "examples": [
-      "trigger [![](img/IFTTT Logo.png)Party Time](IFTTT event)",
-      "trigger [![](img/IFTTT Logo.png)Tweet](IFTTT event) with [](string)",
-      "trigger [![](img/IFTTT Logo.png)Call Myself](IFTTT event)",
-      "trigger [![](img/IFTTT Logo.png)Shorten URL](IFTTT event) with [](URL)"
-    ]
+      "call myself",
+      "shorten [![](https://raw.githubusercontent.com/brandonhorst/lacona-ifttt/master/img/Cut-48.png)*clipboard URL*](URL)",
+      "turn on TV",
+      "tweet [just setting up my twitr](string)",
+      "set lights to [party time](option)",
+      "create todoist [return library books](string) [tomorrow at 4pm](date and time)",
+      "add MailChimp subscriber [app@lacona.io](email address)",
+      "open the garage door",
+      "send [This app rocks!](string) to [app@lacona.io](email address) on Gmail",
+      "journal [Feeling productive today!](string)",
+      "announce [I'm afraid I can't do that](string) on Ubi",
+      "beep [keys](option) Findable",
+      "set thermostat to [74](integer)",
+      "yo [BRANDONHORST](string)",
+      "add [![](https://raw.githubusercontent.com/brandonhorst/lacona-ifttt/master/img/Cut-48.png)*clipboard URL*](URL) to Pocket",
+      "raise the blinds",
+      "log [184](integer) pounds Jawbone UP"
+    ],
+    "engine": ">=1.1.0"
   },
   "scripts": {
     "build": "babel src --out-dir lib",
