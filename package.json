@@ -1,6 +1,6 @@
 {
   "name": "lacona-ifttt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lacona Addon for integrating with anything on IFTTT (via the Maker Channel)",
   "main": "lib/index.js",
   "lacona": {
