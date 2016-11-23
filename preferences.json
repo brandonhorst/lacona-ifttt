@@ -9,7 +9,7 @@
     "type": "array",
     "format": "table",
     "sheet": true,
-    "buttonDescription": "Create commands for every IFTTT Applet you want to use. This Addon does not do anything until Commands are configured.",
+    "buttonDescription": "Create commands for every IFTTT Applet you want to use. This Addon does not do anything until Commands are configured. [Learn more](http://lacona.io/ifttt).",
     "description": "The Event Name should match the field in the Applet. Commands can make use of variables in the form `{string}`, or option lists in the form `[one option,another option]`. Variables and option lists will be sent to the Maker Channel as `value1`, `value2`, and `value3` in order.",
     "items": {
       "type": "object",
